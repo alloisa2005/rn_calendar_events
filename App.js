@@ -41,7 +41,7 @@ export default function App() {
             value={inputTxt} 
             onChangeText={handleChangeTxt}                
         />
-        <Button color={'purple'} title="Add" onPress={handleAddEvent} /> 
+        <Button color={'#66B3E1'} title="Add" onPress={handleAddEvent} /> 
       </View>    
       
       <Text style={styles.texto}>
@@ -70,8 +70,8 @@ export default function App() {
               <Text style={styles.modalTitle}>¿Está seguro que desea eliminar el evento?</Text>
               <Text style={styles.modalElement}>{selectedEvent.value}</Text>
               <View style={styles.modalButtonsContainer}>
-                <Button color={'purple'} title="Cancelar" onPress={() => setModalVisible(!modalVisible) } />
-                <Button color={'purple'} title="Borrar" onPress={() => deleteEvent(selectedEvent.id)} />
+                <Button color={'#66B3E1'} title="Cancelar" onPress={() => setModalVisible(!modalVisible) } />
+                <Button color={'#66B3E1'} title="Borrar" onPress={() => deleteEvent(selectedEvent.id)} />
               </View>
             </View>
           </View>          
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',  
     borderRadius: 5,
     marginBottom: 11,    
-    backgroundColor: 'purple'      
+    backgroundColor: '#66B3E1'      
   },
   eventItemTitle:{
-    fontSize: 16,
+    fontSize: 18,
     color: 'white',
     fontWeight: 'bold',
   },
