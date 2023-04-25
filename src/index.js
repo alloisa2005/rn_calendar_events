@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  Modal,
-} from "react-native";
+import { StatusBar,  StyleSheet,  View,  Text,  Button, TouchableOpacity,  FlatList,  Modal } from "react-native";
+import { Input } from './components/';
+
 
 export default function App() {
   const [inputTxt, setInputTxt] = useState("");
@@ -44,15 +36,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Ingresa tu evento"
-          value={inputTxt}
-          onChangeText={handleChangeTxt}
-        />
-        <Button color={"#66B3E1"} title="add" onPress={handleAddEvent} />
-      </View>
+      <Input
+        placeholder="Ingresa un evento"
+        buttonTitle="Add"
+        inputTxt={inputTxt}
+        onChangeText={handleChangeTxt}
+        onPressBtn={handleAddEvent}
+      />
 
       <Text style={styles.texto}>
         {eventList.length === 0
