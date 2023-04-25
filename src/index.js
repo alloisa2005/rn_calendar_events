@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { StatusBar,  StyleSheet,  View,  Text,  Button, TouchableOpacity,  FlatList,  Modal } from "react-native";
-import { Input } from './components/';
-
+import {
+  StatusBar,
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  FlatList,
+  Modal,
+} from "react-native";
+import { Input, MiModal } from "./components/";
 
 export default function App() {
   const [inputTxt, setInputTxt] = useState("");
@@ -67,28 +75,14 @@ export default function App() {
         />
       </View>
 
-      <Modal animationType="fade" visible={modalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              ¿Está seguro que desea eliminar el evento?
-            </Text>
-            <Text style={styles.modalElement}>{selectedEvent.value}</Text>
-            <View style={styles.modalButtonsContainer}>
-              <Button
-                color={"#66B3E1"}
-                title="Cancelar"
-                onPress={() => setModalVisible(!modalVisible)}
-              />
-              <Button
-                color={"#66B3E1"}
-                title="Borrar"
-                onPress={() => deleteEvent(selectedEvent.id)}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <MiModal
+        animationType="fade"
+        title="¿Está seguro que desea eliminar el evento?"
+        modalVisible={modalVisible}
+        selectedEvent={selectedEvent}
+        btnOk={() => deleteEvent(selectedEvent.id)}
+        btnCancel={() => setModalVisible(!modalVisible)}
+      />      
 
       <StatusBar />
     </View>
@@ -135,29 +129,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     fontWeight: "bold",
-  },
-  modalContainer: {
-    flex: 1,
-    backgroundColor: "#696969",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  modalContent: {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 15,
-  },
-  modalTitle: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  modalElement: {
-    marginBottom: 16,
-    fontSize: 22,
-    fontWeight: "bold",
-  },
-  modalButtonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
+  }
 });
