@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  FlatList,
-  Modal,
-} from "react-native";
-import { Input, MiModal } from "./components/";
+import {  StatusBar,  StyleSheet,  View,  Text,  Button,  TouchableOpacity,  FlatList,  Modal,} from "react-native";
+
+import { Input, MiModal, MyList } from "./components/";
 
 export default function App() {
   const [inputTxt, setInputTxt] = useState("");
@@ -24,7 +16,7 @@ export default function App() {
 
     setEventList((prevEvent) => [
       ...eventList,
-      { id: Math.random().toString(), value: inputTxt },
+      { id: Math.random().toString(), value: inputTxt, completed: false },
     ]);
     setInputTxt("");
   };
@@ -41,6 +33,13 @@ export default function App() {
     setSelectedEvent({});
     setModalVisible(!modalVisible);
   };
+
+  const completeEvent = (id) => {  
+    let tempEventList = [...eventList];
+    let selected = tempEventList.find((el) => el.id === id);
+    selected.completed = !selected.completed;
+    setEventList(tempEventList);
+  }
 
   return (
     <View style={styles.container}>
@@ -61,18 +60,7 @@ export default function App() {
       </Text>
 
       <View style={styles.listaContainer}>
-        <FlatList
-          data={eventList}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.eventItem}
-              onPress={() => onPressItem(item.id)}
-            >
-              <Text style={styles.eventItemTitle}>{item.value}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.id}
-        />
+        <MyList eventList={eventList} onPressItem={onPressItem} completeEvent={completeEvent} />        
       </View>
 
       <MiModal
@@ -94,19 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal: 14,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginTop: 20,
-  },
-  input: {
-    width: "85%",
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
-    fontSize: 15,
-  },
+  },  
   texto: {
     marginTop: 20,
     textAlign: "center",
@@ -116,18 +92,5 @@ const styles = StyleSheet.create({
   listaContainer: {
     marginTop: 16,
     flex: 1,
-  },
-  eventItem: {
-    borderWidth: 1,
-    padding: 18,
-    borderColor: "gray",
-    borderRadius: 5,
-    marginBottom: 11,
-    backgroundColor: "#66B3E1",
-  },
-  eventItemTitle: {
-    fontSize: 18,
-    color: "white",
-    fontWeight: "bold",
-  }
+  }   
 });
