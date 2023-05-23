@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
-import { Input, MyList, MiModal } from '../../components'
+import { useSelector } from 'react-redux';
 import { styles } from './styles';
+import Input from '../input';
+import MyList from '../list';
+import MiModal from '../modal';
 
 const Home = () => {
+
+  const events = useSelector((state) => state.events.events);
 
   const [inputTxt, setInputTxt] = useState("");
   const [eventList, setEventList] = useState([]);
@@ -53,11 +58,11 @@ const Home = () => {
         />
 
         <Text style={styles.texto}>
-          {eventList.length === 0
+          {events.length === 0
             ? `No tengo eventos programados`
-            : eventList.length === 1
-            ? `Tengo ${eventList.length} evento programado`
-            : `Tengo ${eventList.length} eventos programados`}
+            : events.length === 1
+            ? `Tengo ${events.length} evento programado`
+            : `Tengo ${events.length} eventos programados`}
         </Text>
 
         <View style={styles.listaContainer}>
