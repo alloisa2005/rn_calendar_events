@@ -1,3 +1,4 @@
-export { default as Input } from './input';
-export { default as MiModal } from './modal';
-export { default as MyList } from './list';
+export { default as Home } from './home/index';
+export { default as Input } from './input/index';
+export { default as MiModal } from './modal/index';
+export { default as MyList } from './list/index';
