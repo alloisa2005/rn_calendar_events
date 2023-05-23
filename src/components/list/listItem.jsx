@@ -9,7 +9,7 @@ const ListItem = ({onPressItem, item, completeEvent}) => {
       onPress={() => onPressItem(item.id)}    
       onLongPress={() => completeEvent(item.id)}        
     >
-      <Text style={styles.eventItemTitle}>{item.value} {item.completed ? '- Completada': ''}</Text>
+      <Text style={styles.eventItemTitle}>{item.title} {item.completed ? '- Completada': ''}</Text>
     </TouchableOpacity>
   )
 }
