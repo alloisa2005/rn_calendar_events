@@ -1,3 +1,5 @@
+import { eventsTypes } from "../types/events.types";
+
 // create a reducer for todos
 const initialState = {
   events: [
@@ -8,17 +10,17 @@ const initialState = {
 
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_EVENT":
+    case eventsTypes.ADD_EVENT:
       return {
         ...state,
         events: [...state.events, action.payload],
       };
-    case "DELETE_EVENT":
+    case eventsTypes.DELETE_EVENT:
       return {
         ...state,
         events: state.events.filter((event) => event.id !== action.payload),
       };
-    case "UPDATE_EVENT":
+    case eventsTypes.UPDATE_EVENT:
       return {
         ...state,
         events: state.events.map((event) =>
