@@ -2,10 +2,7 @@ import { eventsTypes } from "../types/events.types";
 
 // create a reducer for todos
 const initialState = {
-  events: [
-    { id: 1, title: "Ir al Cine", completed: false },
-    { id: 2, title: "Hacer compras", completed: false },
-  ],
+  events: [],
 };
 
 const eventsReducer = (state = initialState, action) => {
