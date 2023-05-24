@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 11,
     backgroundColor: "#66B3E1",
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   eventItemTitle: {
     fontSize: 18,
