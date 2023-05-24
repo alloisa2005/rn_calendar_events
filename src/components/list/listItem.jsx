@@ -16,7 +16,7 @@ const ListItem = ({onPressItem, item, completeEvent}) => {
   return (
     <View
       style={[styles.eventItem, {backgroundColor: item.completed ? 'red' : '#66B3E1'}]}
-      //onPress={() => onPressItem(item.id)}    
+      onPress={() => onPressItem(item.id)}    
       //onLongPress={() => completeEvent(item.id)}        
     >
       <Text style={styles.eventItemTitle}>{item.title} {item.completed ? '- Completada': ''}</Text>
