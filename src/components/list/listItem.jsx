@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
-import { Entypo } from '@expo/vector-icons'; 
-import { useDispatch } from 'react-redux';
-import { deleteEvent } from '../../redux/actions/events.action';
+import { Entypo, FontAwesome5 } from '@expo/vector-icons'; 
 
-const ListItem = ({onPressItem, item, completeEvent}) => {
+import { useDispatch } from 'react-redux';
+import { deleteEvent, selectEvent } from '../../redux/actions/events.action';
+
+const ListItem = ({ item }) => {
 
   const dispatch = useDispatch();
 
@@ -13,14 +14,18 @@ const ListItem = ({onPressItem, item, completeEvent}) => {
     dispatch( deleteEvent(id) );
   }
 
+  const handleSelectEvent = (id) => {     
+    dispatch( selectEvent(id) );
+  }
+
   return (
     <View
-      style={[styles.eventItem, {backgroundColor: item.completed ? 'red' : '#66B3E1'}]}
-      onPress={() => onPressItem(item.id)}    
-      //onLongPress={() => completeEvent(item.id)}        
-    >
+      style={[styles.eventItem, {backgroundColor: item.completed ? 'red' : '#66B3E1'}]} >
       <Text style={styles.eventItemTitle}>{item.title} {item.completed ? '- Completada': ''}</Text>
-      <Entypo name="trash" size={22} color="white" onPress={ () => handleDeleteEvent(item.id) } />
+      <View style={styles.iconContainer}>
+        <Entypo name="eye" size={26} color="white" onPress={ () => handleSelectEvent(item.id) } />
+        <Entypo name="trash" size={22} color="white" onPress={ () => handleDeleteEvent(item.id) } />
+      </View>
     </View>
   )
 }

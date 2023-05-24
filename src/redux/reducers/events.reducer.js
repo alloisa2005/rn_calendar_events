@@ -3,6 +3,7 @@ import { eventsTypes } from "../types/events.types";
 // create a reducer for todos
 const initialState = {
   events: [],
+  selected: null,
 };
 
 const eventsReducer = (state = initialState, action) => {
@@ -23,6 +24,13 @@ const eventsReducer = (state = initialState, action) => {
         events: state.events.map((event) =>
           event.id === action.payload.id ? action.payload : event
         ),
+      };
+    case eventsTypes.SELECT_EVENT:
+      const id = action.payload;
+      const event = state.events.find((event) => event.id === id);
+      return {
+        ...state,
+        selected: event,
       };
     default:
       return state;

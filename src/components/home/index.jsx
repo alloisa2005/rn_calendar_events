@@ -8,7 +8,7 @@ import MiModal from '../modal';
 
 const Home = () => {
 
-  const events = useSelector((state) => state.events.events);
+  const { events, selected } = useSelector((state) => state.events);
 
   const [inputTxt, setInputTxt] = useState("");
   const [eventList, setEventList] = useState([]);
@@ -75,7 +75,7 @@ const Home = () => {
         <MiModal
           animationType="fade"
           title="¿Está seguro que desea eliminar el evento?"
-          modalVisible={modalVisible}
+          modalVisible={selected ? true : false}
           selectedEvent={selectedEvent}
           btnOk={() => deleteEvent(selectedEvent.id)}
           btnCancel={() => setModalVisible(!modalVisible)}

@@ -21,3 +21,10 @@ export const updateEvent = (event) => {
     payload: event
   }
 }
+
+export const selectEvent = (id) => {
+  return {
+    type: eventsTypes.SELECT_EVENT,
+    payload: id
+  }
+}

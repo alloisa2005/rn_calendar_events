@@ -16,5 +16,10 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     fontWeight: "bold",
+  },
+  iconContainer:{
+    flexDirection: 'row',
+    alignItems: 'center', 
+    gap: 20,
   }
 });
