@@ -22,9 +22,9 @@ export const updateEvent = (event) => {
   }
 }
 
-export const selectEvent = (id) => {
+export const selectEvent = (event) => {
   return {
     type: eventsTypes.SELECT_EVENT,
-    payload: id
+    payload: event
   }
 }

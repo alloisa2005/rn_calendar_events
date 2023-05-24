@@ -72,9 +72,7 @@ const Home = () => {
           />
         </View>
 
-        <MiModal
-          animationType="fade"
-          title="¿Está seguro que desea eliminar el evento?"
+        <MiModal          
           modalVisible={selected ? true : false}
           selectedEvent={selectedEvent}
           btnOk={() => deleteEvent(selectedEvent.id)}

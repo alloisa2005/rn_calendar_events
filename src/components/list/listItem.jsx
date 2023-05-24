@@ -14,8 +14,8 @@ const ListItem = ({ item }) => {
     dispatch( deleteEvent(id) );
   }
 
-  const handleSelectEvent = (id) => {     
-    dispatch( selectEvent(id) );
+  const handleSelectEvent = (item) => {     
+    dispatch( selectEvent(item) );
   }
 
   return (
@@ -23,7 +23,7 @@ const ListItem = ({ item }) => {
       style={[styles.eventItem, {backgroundColor: item.completed ? 'red' : '#66B3E1'}]} >
       <Text style={styles.eventItemTitle}>{item.title} {item.completed ? '- Completada': ''}</Text>
       <View style={styles.iconContainer}>
-        <Entypo name="eye" size={26} color="white" onPress={ () => handleSelectEvent(item.id) } />
+        <Entypo name="eye" size={26} color="white" onPress={ () => handleSelectEvent(item) } />
         <Entypo name="trash" size={22} color="white" onPress={ () => handleDeleteEvent(item.id) } />
       </View>
     </View>

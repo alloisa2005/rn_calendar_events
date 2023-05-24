@@ -24,13 +24,12 @@ const eventsReducer = (state = initialState, action) => {
         events: state.events.map((event) =>
           event.id === action.payload.id ? action.payload : event
         ),
+        selected: null,
       };
-    case eventsTypes.SELECT_EVENT:
-      const id = action.payload;
-      const event = state.events.find((event) => event.id === id);
+    case eventsTypes.SELECT_EVENT:                          
       return {
         ...state,
-        selected: event,
+        selected: action.payload,
       };
     default:
       return state;

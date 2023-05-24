@@ -11,7 +11,7 @@ const MyList = ({onPressItem, completeEvent}) => {
     <FlatList
       data={events}
       renderItem={({ item }) => (
-        <ListItem item={item} onPressItem={onPressItem} completeEvent={completeEvent} />                
+        <ListItem item={item} />                
       )}
       keyExtractor={(item) => item.id}
     />
