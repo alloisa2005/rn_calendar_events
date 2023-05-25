@@ -1,5 +1,7 @@
 
 import { eventsTypes } from "../types/events.types"
+import { FIREBASE_API_URL } from "../../constants/firebase"
+import axios from "axios";
 
 export const addEvent = (event) => {
   return {
@@ -7,6 +9,12 @@ export const addEvent = (event) => {
     payload: event
   }
 }
+
+/* axios.get(`${FIREBASE_API_URL}/events.json`).then((response) => {
+  console.log(response.data)
+}).catch((error) => {
+  console.log(error)
+}) */
 
 export const deleteEvent = (id) => {
   return {
