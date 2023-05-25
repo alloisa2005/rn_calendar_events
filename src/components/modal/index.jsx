@@ -13,17 +13,17 @@ const MiModal = () => {
     <Modal animationType="fade" visible={selected ? true : false}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>¿Desea completar el evento?</Text>
+            <Text style={styles.modalTitle}>{selected?.completed ? "¿Cancelar Completado de Evento?" : "¿Desea completar el evento?"}</Text>
             <Text style={styles.modalElement}>{selected?.title}</Text>
             <View style={styles.modalButtonsContainer}>
               <Button
                 color={"#66B3E1"}
-                title="Cancelar"
+                title="Atrás"
                 onPress={ () => dispatch( selectEvent(null) )}
               />
               <Button
                 color={"#66B3E1"}
-                title="Completar"
+                title={selected?.completed ? "Confirmar" : "Completar"}
                 onPress={ () => dispatch( updateEvent({id: selected.id, title: selected.title, completed: !selected.completed}) )}
               />
             </View>
