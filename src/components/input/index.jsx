@@ -1,17 +1,19 @@
 import { View, TextInput, Button } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addEventAsync } from '../../redux/actions/events.action';
 
 const Input = ({ placeholder, buttonTitle }) => {
 
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.events.loading);
+
   const [inputTxt, setInputTxt] = useState("");
 
   const handlerAddEvent = () => {
     if(inputTxt.trim() === "") return;
-    
+
     const event = {      
       title: inputTxt,
       completed: false
@@ -28,7 +30,7 @@ const Input = ({ placeholder, buttonTitle }) => {
         value={inputTxt}
         onChangeText={ (e) => setInputTxt(e) }
       />
-      <Button color={"#66B3E1"} title={buttonTitle} onPress={handlerAddEvent} />
+      <Button disabled={loading} color={"#66B3E1"} title={buttonTitle} onPress={handlerAddEvent} />
     </View>
   )
 }

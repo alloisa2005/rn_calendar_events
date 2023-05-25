@@ -4,6 +4,7 @@ import { eventsTypes } from "../types/events.types";
 const initialState = {
   events: [],
   selected: null,
+  loading: false,
 };
 
 const eventsReducer = (state = initialState, action) => {
@@ -30,6 +31,11 @@ const eventsReducer = (state = initialState, action) => {
       return {
         ...state,
         selected: action.payload,
+      };
+    case eventsTypes.LOADING_EVENTS:
+      return {
+        ...state,
+        loading: !state.loading,
       };
     default:
       return state;

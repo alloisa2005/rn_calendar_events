@@ -26,6 +26,8 @@ export const deleteEvent = (id) => {
 export const addEventAsync = (event) => {
   return async (dispatch) => {
     try {
+      dispatch(loadingEvents());
+
       const response = await fetch(`${FIREBASE_API_URL}/events.json`, {
         method: "POST",
         headers: {
@@ -36,6 +38,8 @@ export const addEventAsync = (event) => {
       const data = await response.json();      
 
       dispatch(addEvent({ ...event, id: data.name }));
+      
+      dispatch(loadingEvents());
     } catch (error) {
       console.log(error);
     }
@@ -86,3 +90,11 @@ export const selectEvent = (event) => {
     payload: event,
   };
 };
+
+export const loadingEvents = () => {
+  return {
+    type: eventsTypes.LOADING_EVENTS,
+  };
+}
+
+
