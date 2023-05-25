@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     flex: 1,
   },
+  indicatorContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

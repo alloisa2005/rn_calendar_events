@@ -9,6 +9,11 @@ const initialState = {
 
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case eventsTypes.GET_EVENTS:
+      return {
+        ...state,
+        events: action.payload,
+      };
     case eventsTypes.ADD_EVENT:
       return {
         ...state,

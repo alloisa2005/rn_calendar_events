@@ -22,6 +22,32 @@ export const deleteEvent = (id) => {
   };
 };
 
+export const getEventsAsync = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(loadingEvents());
+
+      const response = await fetch(`${FIREBASE_API_URL}/events.json`);
+      const data = await response.json();
+
+       const events = Object.keys(data).map((key) => {
+        return {
+          ...data[key],
+          id: key,
+        };
+      });
+
+      dispatch({
+        type: eventsTypes.GET_EVENTS,
+        payload: events,
+      });
+      
+      dispatch(loadingEvents()); 
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const addEventAsync = (event) => {
   return async (dispatch) => {
@@ -70,6 +96,8 @@ export const updateEventAsync = (event) => {
 export const deleteEventAsync = (id) => {
   return async (dispatch) => {
     try {
+      dispatch(loadingEvents());
+
       const response = await fetch(`${FIREBASE_API_URL}/events/${id}.json`, {
         method: "DELETE",
         headers: {
@@ -78,6 +106,8 @@ export const deleteEventAsync = (id) => {
       });
 
       dispatch(deleteEvent(id));
+
+      dispatch(loadingEvents());
     } catch (error) {
       console.log(error);
     }

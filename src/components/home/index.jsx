@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
-import { View, Text } from 'react-native'
-import { useSelector } from 'react-redux';
-import { styles } from './styles';
-import Input from '../input';
-import MyList from '../list';
-import MiModal from '../modal';
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { styles } from "./styles";
+import Input from "../input";
+import MyList from "../list";
+import MiModal from "../modal";
+import { getEventsAsync } from "../../redux/actions/events.action";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEventsAsync());
+  }, []);
 
-  const { events, selected } = useSelector((state) => state.events);
+  const { events, selected, loading } = useSelector((state) => state.events);
 
   const [inputTxt, setInputTxt] = useState("");
   const [eventList, setEventList] = useState([]);
@@ -49,39 +54,43 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-        <Input
-          placeholder="Ingresa un evento"
-          buttonTitle="Add"
-          inputTxt={inputTxt}
-          onChangeText={handleChangeTxt}
-          onPressBtn={handleAddEvent}
-        />
+      <Input
+        placeholder="Ingresa un evento"
+        buttonTitle="Add"
+        inputTxt={inputTxt}
+        onChangeText={handleChangeTxt}
+        onPressBtn={handleAddEvent}
+      />
 
+      {
+        !loading && 
         <Text style={styles.texto}>
-          {events.length === 0
-            ? `No tengo eventos programados`
-            : events.length === 1
-            ? `Tengo ${events.length} evento programado`
-            : `Tengo ${events.length} eventos programados`}
-        </Text>
+        {events.length === 0
+          ? `No tengo eventos programados`
+          : events.length === 1
+          ? `Tengo ${events.length} evento programado`
+          : `Tengo ${events.length} eventos programados`}
+      </Text>
+      }
 
-        <View style={styles.listaContainer}>
-          <MyList            
-            onPressItem={onPressItem}
-            completeEvent={completeEvent}
-          />
+      {loading ? (
+        <View style={styles.indicatorContainer}>
+          <ActivityIndicator size={40} color='black' />
         </View>
+      ) : (
+        <View style={styles.listaContainer}>
+          <MyList onPressItem={onPressItem} completeEvent={completeEvent} />
+        </View>
+      )}
 
-        <MiModal          
-          modalVisible={selected ? true : false}
-          selectedEvent={selectedEvent}
-          btnOk={() => deleteEvent(selectedEvent.id)}
-          btnCancel={() => setModalVisible(!modalVisible)}
-        />        
-      </View>
-  )
-}
+      <MiModal
+        modalVisible={selected ? true : false}
+        selectedEvent={selectedEvent}
+        btnOk={() => deleteEvent(selectedEvent.id)}
+        btnCancel={() => setModalVisible(!modalVisible)}
+      />
+    </View>
+  );
+};
 
-export default Home
-
-
+export default Home;
