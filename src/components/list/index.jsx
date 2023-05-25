@@ -5,8 +5,8 @@ import { useSelector} from "react-redux";
 
 const MyList = ({onPressItem, completeEvent}) => {
 
-  const events = useSelector((state) => state.events.events);
-
+  const events = useSelector((state) => state.events.events);  
+  
   return (
     <FlatList
       data={events}

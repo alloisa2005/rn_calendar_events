@@ -4,14 +4,14 @@ import { styles } from './styles'
 import { Entypo, FontAwesome5 } from '@expo/vector-icons'; 
 
 import { useDispatch } from 'react-redux';
-import { deleteEvent, selectEvent } from '../../redux/actions/events.action';
+import { deleteEventAsync, selectEvent } from '../../redux/actions/events.action';
 
 const ListItem = ({ item }) => {
 
   const dispatch = useDispatch();
 
   const handleDeleteEvent = (id) => {
-    dispatch( deleteEvent(id) );
+    dispatch( deleteEventAsync(id) );
   }
 
   const handleSelectEvent = (item) => {     

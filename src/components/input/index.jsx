@@ -2,7 +2,7 @@ import { View, TextInput, Button } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles';
 import { useDispatch } from 'react-redux';
-import { addEvent } from '../../redux/actions/events.action';
+import { addEventAsync } from '../../redux/actions/events.action';
 
 const Input = ({ placeholder, buttonTitle }) => {
 
@@ -10,12 +10,11 @@ const Input = ({ placeholder, buttonTitle }) => {
   const [inputTxt, setInputTxt] = useState("");
 
   const handlerAddEvent = () => {
-    const event = {
-      id: Math.random().toString(),
+    const event = {      
       title: inputTxt,
       completed: false
     }
-    dispatch(addEvent(event));
+    dispatch( addEventAsync(event) );
     setInputTxt("");
   }
 

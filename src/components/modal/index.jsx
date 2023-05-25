@@ -2,7 +2,7 @@ import { View, Text, Modal, Button } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectEvent, updateEvent } from '../../redux/actions/events.action';
+import { selectEvent, updateEventAsync } from '../../redux/actions/events.action';
 
 const MiModal = () => {
 
@@ -24,7 +24,7 @@ const MiModal = () => {
               <Button
                 color={"#66B3E1"}
                 title={selected?.completed ? "Confirmar" : "Completar"}
-                onPress={ () => dispatch( updateEvent({id: selected.id, title: selected.title, completed: !selected.completed}) )}
+                onPress={ () => dispatch( updateEventAsync({id: selected.id, title: selected.title, completed: !selected.completed}) )}
               />
             </View>
           </View>
