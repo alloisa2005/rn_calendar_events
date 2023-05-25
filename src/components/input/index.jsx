@@ -10,6 +10,8 @@ const Input = ({ placeholder, buttonTitle }) => {
   const [inputTxt, setInputTxt] = useState("");
 
   const handlerAddEvent = () => {
+    if(inputTxt.trim() === "") return;
+    
     const event = {      
       title: inputTxt,
       completed: false
